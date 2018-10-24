@@ -3,8 +3,22 @@
   <ul>
     <li *ngFor="let item of items$">
       <ul>
-        <li>
-          <a class="basicText" routerLink="/details/{{item.itemNumber}}">{{ item.name }}</a>
+        <li routerLink="/details/{{item.itemNumber}}">
+          <table>
+            <tr>
+              <td>
+                <img 
+                  routerLink="/details/{{item.itemNumber}}"
+                  src="../../../assets/animalImages/{{ item.image }}" 
+                  style="width:75px; height:75px; padding-left: 20px;" 
+                />
+              </td>
+              <td>
+                <a class="basicText" routerLink="/details/{{item.itemNumber}}">{{ item.name }}</a>
+              </td>
+            </tr>
+          </table>
+          
         </li>
       </ul>
     </li>
