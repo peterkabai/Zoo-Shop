@@ -38,17 +38,7 @@ export class ThanksComponent implements OnInit {
     this.data.changeMessage("No")
   }
 
-
-
-
-
-  
-  testPut(newValue) {
-    let itemNumber = 1
-    this.data.putQuantity(this.newItems$, itemNumber, newValue)
-    console.log(this.newItems$)
-    console.log(newValue)
+  testPut(itemNumber, newValue) {
+    this.data.putQuantity(itemNumber, newValue).subscribe(); 
   }
-
-
 }

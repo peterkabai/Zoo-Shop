@@ -22,13 +22,9 @@ export class DataService {
   getItem(itemNumber) { return this.http.get('http://localhost:8081/'+itemNumber) }
 
   // functions to PUT
-  putQuantity(newItem, itemNumber, inStock) { 
-    const headers = new HttpHeaders().set('content-type' , 'application/json');
-    this.http.put(
-      'http://localhost:8081/put/'+itemNumber+'/'+inStock,
-      JSON.stringify({}),
-      {headers: headers}
-    )
+  putQuantity(itemNumber, inStock) { 
+    const putHeader = new HttpHeaders().append('Content-Type' , 'application/json');
+    return this.http.put('http://localhost:8081/put/'+itemNumber+'/'+inStock, JSON.stringify({}), {headers: putHeader})
   }
 
   // store cross page map for the shopping cart

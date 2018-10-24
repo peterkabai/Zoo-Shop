@@ -17,7 +17,13 @@
       </div>
     </li>
 
-    <div class="button" style="width: 120px" button #submit (click)="testPut(123)">
+
+
+    <p class="basicText">Item Number:</p><input class="input" type="text" #itemNumber />
+    <br>
+    <p class="basicText">In Stock:</p><input class="input" type="test" #inStock />
+    <br>
+    <div class="button" style="width: 120px" button #submit (click)="testPut(itemNumber.value, inStock.value)">
       <p class="buttonText">Test Put</p>
     </div>
 
