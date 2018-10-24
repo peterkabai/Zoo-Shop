@@ -24,22 +24,33 @@ export class DataService {
   // functions to PUT
   putQuantity(itemNumber, inStock) { 
     const putHeader = new HttpHeaders().append('Content-Type' , 'application/json');
-    return this.http.put('http://localhost:8081/put/'+itemNumber+'/'+inStock, JSON.stringify({}), {headers: putHeader})
+    return this.http.put(
+      'http://localhost:8081/put/'+itemNumber+'/'+inStock, 
+      JSON.stringify({}), 
+      {headers: putHeader})
   }
 
   // store cross page map for the shopping cart
-  private itemsInCart = new Map<Object,number>()
+  private itemsInCart = new Map<Object,[number, number]>()
+
   getCart() {
     return this.itemsInCart
   }
-  addToCartService(item, numberOfItem) {
-    this.itemsInCart.set(item, Number(numberOfItem))
+
+  addToCartService(item, numberOfItem) {  
+    this.itemsInCart.forEach((value, key) => {
+      if (item.itemNumber == value[1]) {
+        this.itemsInCart.delete(key)
+      }
+    });
+    this.itemsInCart.set(item, [numberOfItem, item.itemNumber])
   }
+
   removeItemFromCart(itemToRemove){
     this.itemsInCart.delete(itemToRemove)
   }
-  clearCart(){
-    this.itemsInCart = new Map<Object,number>()
-  }
 
+  clearCart(){
+    this.itemsInCart = new Map<Object,[number, number]>()
+  }
 }
